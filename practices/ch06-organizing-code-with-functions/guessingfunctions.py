@@ -1,23 +1,25 @@
 import random
 
-print("------------------------------")
-print("     M&M guessing game!")
-print("------------------------------")
+def show_header():
+    print("------------------------------")
+    print("     M&M guessing game!")
+    print("------------------------------")
 
-print("Guess the number of M&Ms and you get lunch on the house!")
-print()
+    print("Guess the number of M&Ms and you get lunch on the house!")
+    print()
 
 mm_count = random.randint(1, 100)
 attempt_limit = 5
 attempts = 0
+show_header()
 
 def get_guess():
-    guess_t = input("How many M&Ms are in the jar? ")
+    guess_t = input("How many M&Ms do you think are in the jar? ")
     return int(guess_t)
 
 def test_guess(test):
     if test == mm_count:
-        print('Your lunch is free!!')
+        print('****  Your lunch is free!!  ****')
         return 1
     elif test < mm_count:
         print("Sorry, that's too LOW!")
