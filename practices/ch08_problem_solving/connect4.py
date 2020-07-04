@@ -93,41 +93,36 @@ def find_winner(board):
     return False
 
 
-def get_winning_sequences(board):
+def get_winning_sequences(brd):
     sequences = []
-    rows = len(board)
-    cols = len(board[0])
+    rows = len(brd)
+    cols = len(brd[0])
 
     # Win by rows
-    for row_idx in range(0, rows):
-        for col_idx in range(0, cols - 3):
+    for r_idx in range(0, rows):
+        for c_idx in range(0, cols - 3):
             row = [
-                board[row_idx][col_idx + 0],
-                board[row_idx][col_idx + 1],
-                board[row_idx][col_idx + 2],
-                board[row_idx][col_idx + 3],
+                brd[r_idx][c_idx + 0], brd[r_idx][c_idx + 1], brd[r_idx][c_idx + 2], brd[r_idx][c_idx + 3]
             ]
             sequences.append(row)
 
     # Win by columns
-    for col_idx in range(0, cols):
-        for row_idx in range(0, (rows - 3)):
+    for c_idx in range(0, cols):
+        for r_idx in range(0, (rows - 3)):
             col = [
-                board[row_idx + 0][col_idx],
-                board[row_idx + 1][col_idx],
-                board[row_idx + 2][col_idx],
-                board[row_idx + 3][col_idx],
+                brd[r_idx + 0][c_idx],
+                brd[r_idx + 1][c_idx],
+                brd[r_idx + 2][c_idx],
+                brd[r_idx + 3][c_idx]
             ]
             sequences.append(col)
 
     # Win by diagonals
-    for row_idx in range(0, rows - 3):
-        for col_idx in range(0, cols - 3):
+    for r_idx in range(0, rows - 3):
+        for c_idx in range(0, cols - 3):
             diagonals = [
-                [board[row_idx + 0][col_idx + 0], board[row_idx + 1][col_idx + 1], board[row_idx + 2][col_idx + 2],
-                 board[row_idx + 3][col_idx + 3]],
-                [board[row_idx + 0][col_idx + 3], board[row_idx + 1][col_idx + 2], board[row_idx + 2][col_idx + 1],
-                 board[row_idx + 3][col_idx + 0]],
+                [brd[r_idx + 0][c_idx + 0], brd[r_idx + 1][c_idx + 1], brd[r_idx + 2][c_idx + 2], brd[r_idx + 3][c_idx + 3]],
+                [brd[r_idx + 0][c_idx + 3], brd[r_idx + 1][c_idx + 2], brd[r_idx + 2][c_idx + 1], brd[r_idx + 3][c_idx + 0]]
             ]
             sequences.extend(diagonals)
 
