@@ -51,9 +51,10 @@ def main():
 
     print()
     print(f"GAME OVER! {player} has won with the board: ")
-    log(f"GAME OVER! {player} has won with the board: ")
+    record_win(player)
     show_board(board)
     print()
+    log(f"GAME OVER! {player} has won the Game!!")
 
 
 def choose_location(board, symbol):
@@ -61,10 +62,14 @@ def choose_location(board, symbol):
     column -= 1
 
     if column < 0 or column >= len(board[0]):
+        log(f'ERROR - Invalid Column {column} was selected by player {symbol}')
         return False
 
     if board[0][column]:
+        log(f'ERROR - Full Column {column} was selected by player {symbol}')
         return False
+
+    log(f'Column {column} was selected by player {symbol}')
 
     row = len(board)
     while True:
@@ -141,7 +146,7 @@ def log(msg):
 
     with open(filename, 'a', encoding='utf-8') as fout:
         fout.write(f"[{datetime.datetime.now().date().isoformat()}] ")
-        fout.write(msg)
+        fout.write(str(msg))
         fout.write('\n')
 
 
