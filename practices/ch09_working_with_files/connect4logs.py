@@ -1,3 +1,7 @@
+import datetime
+import json
+import os
+
 def show_header():
     print("---------------------------")
     print("       Connect 4 Game")
@@ -7,6 +11,7 @@ def show_header():
 
 def main():
     show_header()
+    show_leaderboard()
 
     # CREATE THE BOARD:
     # Board is a list of rows
@@ -22,7 +27,9 @@ def main():
 
     # CHOOSE INITIAL PLAYER
     active_player_index = 0
-    players = ["Daniel", "Computer"]
+    player1, player2 = get_players()
+    players = [player1, player2]
+    log(players)
     symbols = ["X", "O"]
     player = players[active_player_index]
 
@@ -36,6 +43,7 @@ def main():
         show_board(board)
         if not choose_location(board, symbol):
             print("That isn't an option, try again.")
+            log(f"{player} tried an invalid option!")
             continue
 
         # TOGGLE ACTIVE PLAYER
@@ -43,6 +51,7 @@ def main():
 
     print()
     print(f"GAME OVER! {player} has won with the board: ")
+    log(f"GAME OVER! {player} has won with the board: ")
     show_board(board)
     print()
 
@@ -68,6 +77,13 @@ def choose_location(board, symbol):
     return True
 
 
+def get_players():
+    p1 = input("Player 1, what is your name? ")
+    p2 = "Computer"
+
+    return p1, p2
+
+
 def show_board(board):
     for row in board:
         print("| ", end='')
@@ -79,6 +95,7 @@ def show_board(board):
 
 def show_leaderboard():
     leaders = load_leaders()
+    log(leaders)
 
     sorted_leaders = list(leaders.items())
     sorted_leaders.sort(key=lambda l: l[1], reverse=True)
