@@ -14,23 +14,23 @@ def show_header():
 
 
 def set_white():
-    print(Fore.WHITE)
+    print(Fore.WHITE, end='')
 
 
 def set_red():
-    print(Fore.RED)
+    print(Fore.RED, end='')
 
 
 def set_green():
-    print(Fore.GREEN)
+    print(Fore.GREEN, end='')
 
 
 def set_yellow():
-    print(Fore.YELLOW)
+    print(Fore.YELLOW, end='')
 
 
 def set_cyan():
-    print(Fore.CYAN)
+    print(Fore.CYAN, end='')
 
 
 def set_purple():
