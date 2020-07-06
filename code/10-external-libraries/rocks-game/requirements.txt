@@ -1,2 +1,2 @@
 colorama
-prompt_toolkit
+prompt-toolkit
