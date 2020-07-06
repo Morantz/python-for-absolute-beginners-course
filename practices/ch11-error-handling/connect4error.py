@@ -17,6 +17,10 @@ def set_white():
     print(Fore.WHITE)
 
 
+def set_red():
+    print(Fore.RED)
+
+
 def set_green():
     print(Fore.GREEN)
 
@@ -84,35 +88,55 @@ def main():
 
 
 def choose_location(board, symbol):
-    column = int(input("Choose which column: "))
-    column -= 1
+    try:
+        column = int(input("Choose which column: "))
+        column -= 1
 
-    if column < 0 or column >= len(board[0]):
-        log(f'ERROR - Invalid Column {column} was selected by player {symbol}')
-        return False
+        if column < 0 or column >= len(board[0]):
+            log(f'ERROR - Invalid Column {column} was selected by player {symbol}')
+            return False
 
-    if board[0][column]:
-        log(f'ERROR - Full Column {column} was selected by player {symbol}')
-        return False
+        if board[0][column]:
+            log(f'ERROR - Full Column {column} was selected by player {symbol}')
+            return False
 
-    log(f'Column {column} was selected by player {symbol}')
+        log(f'Column {column} was selected by player {symbol}')
 
-    row = len(board)
-    while True:
-        row -= 1
-        cell = board[row][column]
-        if cell is None:
-            break
+        row = len(board)
+        while True:
+            row -= 1
+            cell = board[row][column]
+            if cell is None:
+                break
 
-    board[row][column] = symbol
-    return True
+        board[row][column] = symbol
+        return True
+
+    except ValueError as ve:
+        set_red()
+        print()
+        print(f'Please try a value from 1 to {len(board[0])}.  Thanks!')
+        set_white()
+
+    except KeyboardInterrupt:
+        set_red()
+        print()
+        print('Sorry to hear you have to go.  Thanks for playing!')
+        set_white()
 
 
 def get_players():
-    p1 = input("Player 1, what is your name? ")
-    p2 = "Computer"
+    try:
+        p1 = input("Player 1, what is your name? ")
+        p2 = "Computer"
 
-    return p1, p2
+        return p1, p2
+
+    except KeyboardInterrupt:
+        set_red()
+        print()
+        print('Sorry to hear you have to go.  Thanks for playing!')
+        set_white()
 
 
 def show_board(board):
