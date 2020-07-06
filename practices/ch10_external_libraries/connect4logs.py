@@ -8,7 +8,7 @@ def show_header():
     set_green()
     print("---------------------------")
     print("       Connect 4 Game")
-    print("      File I/O Edition")
+    print("     Colorized Edition")
     print("---------------------------")
     set_white()
 
