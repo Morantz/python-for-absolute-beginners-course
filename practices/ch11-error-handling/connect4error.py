@@ -116,6 +116,7 @@ def choose_location(board, symbol):
         set_red()
         print()
         print(f'Please try a value from 1 to {len(board[0])}.  Thanks!')
+        log(f'ERROR - Player with symbol {symbol} entered invalid column selection.')
         set_white()
 
     except KeyboardInterrupt:
@@ -123,6 +124,13 @@ def choose_location(board, symbol):
         print()
         print('Sorry to hear you have to go.  Thanks for playing!')
         set_white()
+
+    except:
+        set_red()
+        print()
+        print('Unknown error.  Please contact support!')
+        set_white()
+
 
 
 def get_players():
