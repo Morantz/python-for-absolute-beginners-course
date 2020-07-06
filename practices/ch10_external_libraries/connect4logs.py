@@ -1,12 +1,36 @@
 import datetime
 import json
 import os
+from colorama import Fore
+
 
 def show_header():
+    set_green()
     print("---------------------------")
     print("       Connect 4 Game")
     print("      File I/O Edition")
     print("---------------------------")
+    set_white()
+
+
+def set_white():
+    print(Fore.WHITE)
+
+
+def set_green():
+    print(Fore.GREEN)
+
+
+def set_yellow():
+    print(Fore.YELLOW)
+
+
+def set_cyan():
+    print(Fore.CYAN)
+
+
+def set_purple():
+    print(Fore.MAGENTA)
 
 
 def main():
@@ -50,7 +74,9 @@ def main():
         active_player_index = (active_player_index + 1) % len(players)
 
     print()
+    set_purple()
     print(f"GAME OVER! {player} has won with the board: ")
+    set_white()
     record_win(player)
     show_board(board)
     print()
@@ -90,12 +116,14 @@ def get_players():
 
 
 def show_board(board):
+    set_yellow()
     for row in board:
         print("| ", end='')
         for cell in row:
             symbol = cell if cell is not None else "_"
             print(symbol, end=" | ")
         print()
+    set_white()
 
 
 def show_leaderboard():
@@ -152,7 +180,8 @@ def log(msg):
 
 def announce_turn(player):
     print()
-    print(f"It's {player}'s turn. Here's the board:")
+    msg = str("It's " + Fore.BLUE + player + "'s " + Fore.WHITE + "turn. Here's the board:")
+    print(msg)
     print()
 
 
